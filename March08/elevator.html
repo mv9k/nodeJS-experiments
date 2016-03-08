@@ -5,12 +5,44 @@
     <title>Elevator</title>
 
     <script src="elevator.js"></script>
+    <style>
+        * {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            background-color: #78a2bf;
+        }
+        .floors {
+            width: 20%;
+        }
+        .emergency {
+            background-color: red !important;
+            font-size: 24px;
+        }
+        button {
+            background-color: #e0f3ff;
+            padding: 10px;
+            font-size: 24px;
+            border-radius: 25px;
+        }
+    </style>
 </head>
 <body>
-    <form>
+    <form class="floors">
         <fieldset>
-            <legend>Floor 1</legend>
-            <button onclick="floor1Button()">Floor 1</button>
+            <legend>Floors</legend>
+            <button>1</button><br>
+            <button>2</button><br>
+            <button>3</button><br>
+            <button>4</button><br>
+            <button>5</button><br>
+        </fieldset>
+        <fieldset>
+            <legend>Controls</legend>
+            <button>Open Door</button>
+            <button>Close Door</button><br><hr>
+            <button class="emergency">Emergency</button>
         </fieldset>
     </form>
 

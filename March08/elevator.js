@@ -4,6 +4,9 @@ const EventEmitter = require('events');
 var http = require('http');
 var elevator = new EventEmitter();
 
+var currentFloor = 1;
+
+
 elevator.on('floorButton', (floorDest) => {
     console.log('floor', floorDest, 'button pushed');
 
@@ -22,14 +25,17 @@ elevator.on('closeDoor', (floorDest) => {
 
     setTimeout(() => {
         console.log('door closed w/ destination to floor ->', floorDest);
-        elevator.emit('doorclosed');
 
-        elevator.emit('movingFloors', floorDest);
-        console.log('moving to floor ->', floorDest);
-        setTimeout(() => {
-            elevator.emit('openDoor', floorDest);
-        }, 400);
-
+        if(floorDest != currentFloor) {
+            elevator.emit('movingFloors', floorDest);
+            console.log('moving to floor ->', floorDest);
+            setTimeout(() => {
+                elevator.emit('openDoor', floorDest);
+            }, 400);
+        }
+        else {
+            console.log('Already on chosen floor');
+        }
 
     }, 1000);
 
@@ -46,17 +52,11 @@ elevator.on('emergencyStop', () => {
     }, 1200);
 });
 
-elevator.on('floor2Button', (floorDest) => {
-    console.log('floor 2 button pushed');
-
-    setTimeout(() => {
-        elevator.emit('closeDoor', 2);
-    }, 1000)
-});
 
 
 
 
-
-elevator.emit('floorButton', 2);
-//elevator.emit('emergencyStop');
+elevator.emit('floorButton', 3);
+//setTimeout(()=>{
+//    elevator.emit('emergencyStop');
+//}, 1000);
