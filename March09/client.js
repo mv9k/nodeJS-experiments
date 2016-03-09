@@ -16,4 +16,14 @@ client.connect(3001, "127.0.0.1", function(){
     });
 });
 
+client.on('data', (data)=>{
+    process.stdout.write(data);
+});
+
+client.on('end', function(){
+    console.log('no connection to server. Exiting now.');
+    setTimeout(function(){
+        process.exit();
+    }, 1200);
+});
 
