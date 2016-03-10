@@ -1,2 +1,4 @@
 new message!
 This is the appended line!
+Name of user: username
+Message of user: This is the message
