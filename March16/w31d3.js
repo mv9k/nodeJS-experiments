@@ -21,10 +21,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 fs.readFile('mock_data.json', 'utf8', (errors, jsonFile)=>{
     transactions = JSON.parse(jsonFile);
-    console.log(jsonFile);
+    //console.log(jsonFile);
 });
 
-fs.readFile('mock_data2.json', 'utf8', (errors, jsonFile)=>{
+fs.readFile('mock_data3.json', 'utf8', (errors, jsonFile)=>{
     testData2 = JSON.parse(jsonFile);
 });
 
@@ -53,6 +53,18 @@ router.get('/test/:id', (req, res)=>{
 
     res.json(testData2[id] || 'Cannot find transaction: '+id);
 
+});
+
+router.post('/test/:id', (req, res)=>{
+
+    console.log(req.body.data);
+
+    res.json(req.body.data).end();
+
+    fs.writeFile('mock_data3.json', JSON.stringify(testData2),
+        function(error) {
+            console.log(error, 'posted data');
+        });
 });
 
 
