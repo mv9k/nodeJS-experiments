@@ -8,6 +8,7 @@ var fs = require('fs');
 var transactions = [];
 var testData2 = {};
 
+
 var bodyParser = require('body-parser');
 var app = express();
 
@@ -50,7 +51,7 @@ router.get('/transaction/:id', (req, res)=>{
 router.get('/test/:id', (req, res)=>{
     var id = req.params.id;
 
-    res.json(testData2[id] || 'Not Found');
+    res.json(testData2[id] || 'Cannot find transaction: '+id);
 
 });
 
