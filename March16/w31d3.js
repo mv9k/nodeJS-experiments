@@ -6,6 +6,7 @@ var express = require('express');
 var fs = require('fs');
 
 var transactions = [];
+var testData2 = {};
 
 var bodyParser = require('body-parser');
 var app = express();
@@ -20,6 +21,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 fs.readFile('mock_data.json', 'utf8', (errors, jsonFile)=>{
     transactions = JSON.parse(jsonFile);
     console.log(jsonFile);
+});
+
+fs.readFile('mock_data2.json', 'utf8', (errors, jsonFile)=>{
+    testData2 = JSON.parse(jsonFile);
 });
 
 // ROUTES for API
@@ -40,6 +45,13 @@ router.get('/transaction/:id', (req, res)=>{
     }
 
     res.send('Not Found');
+});
+
+router.get('/test/:id', (req, res)=>{
+    var id = req.params.id;
+
+    res.json(testData2[id] || 'Not Found');
+
 });
 
 
